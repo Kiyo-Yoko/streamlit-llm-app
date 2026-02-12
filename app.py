@@ -2,7 +2,7 @@ import os
 import streamlit as st
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
-from langchain.schema import SystemMessage, HumanMessage
+from langchain_core.messages import SystemMessage, HumanMessage
 
 # 環境変数の読み込み
 load_dotenv()
@@ -40,7 +40,7 @@ def get_llm_response(user_input: str, expert_type: str) -> str:
     ]
     
     # LLMに問い合わせ
-    result = llm(messages)
+    result = llm.invoke(messages)
     
     return result.content
 
